@@ -1,6 +1,6 @@
-import * as PlayerActionType from '../ActionType';
+import * as PlayerActionType from '../ActionType/player';
 
-cont initialState = [
+const initialState = [
   {
     name: 'Jim Hoskins',
     score: 31,
@@ -15,7 +15,7 @@ cont initialState = [
   },
 ];
 
-export deafult function Player(state=initialState,action)
+export default function Player (state=initialState,action)
 {
   switch(action.type)
   {
@@ -24,7 +24,7 @@ export deafult function Player(state=initialState,action)
       ...state,
       {
         name:action.name,
-        score:0;
+        score:0
       }
     ];
 
@@ -35,18 +35,18 @@ export deafult function Player(state=initialState,action)
     ];
 
     case PlayerActionType.SCORE_CHANGE:
-    return [
-      ...state.map((player,index) =>
+    return state.map((player,index) =>
       {
         if(index==action.index)
         {
           return {
             ...player,
             score: player.score + action.score
-          }
+          };
         }
+        return player;
       });
-    ];
+    
 
     default:
     return state;
