@@ -2,7 +2,7 @@ import React,{Component,PropTypes} from 'react';
 
 export default class extends Component{
    static propTypes: {
-    addPlayer: PropTypes.func.isRequired,
+    addPlayer: PropTypes.func.isRequired
   };
 
   state={
@@ -16,7 +16,7 @@ export default class extends Component{
 
   addPlayer = (e) => {
     if (e) e.preventDefault();
-    this.props.onAdd(this.state.name);
+    this.props.addPlayer(this.state.name);
     this.setState({ name: '' });
   };
 

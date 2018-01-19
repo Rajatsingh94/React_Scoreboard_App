@@ -10,14 +10,14 @@ import * as PlayerActionCreators from '../actions/player';
 class Scoreboard extends Component{
 
   static propTypes = {
-    players: PropTypes.array.isRequired
+    players: React.PropTypes.array.isRequired
   };
 
   render() {
 
     const {dispatch,players} = this.props;
     const addPlayer = bindActionCreators(PlayerActionCreators.addPlayer,dispatch);
-    const removepPlayer = bindActionCreators(PlayerActionCreators.removePlayer,dispatch);
+    const removePlayer = bindActionCreators(PlayerActionCreators.removePlayer,dispatch);
     const updateScore= bindActionCreators(PlayerActionCreators.updateScore,dispatch);
 
     const playerComponent = players.map((player,index) =>(
@@ -26,7 +26,7 @@ class Scoreboard extends Component{
         name={player.name}
         score={player.score}
         key={player.name}
-        updatePlayerScore={updatePlayerScore}
+        updatePlayerScore={updateScore}
         removePlayer={removePlayer}
       />
     ));
@@ -43,8 +43,11 @@ class Scoreboard extends Component{
   }
 }
 
-const maptoprop = state =>{
-  players:state;
-}
+const maptoprop = state =>(
+
+  {
+    players:state
+  }
+);
 
 export default connect(maptoprop)(Scoreboard);
