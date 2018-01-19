@@ -4,7 +4,7 @@ import Header from '../components/Header';
 import Player from '../components/Player';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as PlayerActionCreators from './actions/player';
+import * as PlayerActionCreators from '../actions/player';
 
 
 class Scoreboard extends Component{
@@ -13,14 +13,12 @@ class Scoreboard extends Component{
     players: PropTypes.array.isRequired
   };
 
-
-
   render() {
 
-    const{dispatch.players} = this.props;
+    const {dispatch,players} = this.props;
     const addPlayer = bindActionCreators(PlayerActionCreators.addPlayer,dispatch);
     const removepPlayer = bindActionCreators(PlayerActionCreators.removePlayer,dispatch);
-    const updateScore=; bindActionCreators(PlayerActionCreators.updateScore,dispatch);
+    const updateScore= bindActionCreators(PlayerActionCreators.updateScore,dispatch);
 
     const playerComponent = players.map((player,index) =>(
       <Player
@@ -49,4 +47,4 @@ const maptoprop = state =>{
   players:state;
 }
 
-export deafult connect(maptoprop)(Scoreboard);
+export default connect(maptoprop)(Scoreboard);

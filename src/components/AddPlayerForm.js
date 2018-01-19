@@ -2,7 +2,7 @@ import React,{Component,PropTypes} from 'react';
 
 export default class extends Component{
    static propTypes: {
-    onAdd: React.PropTypes.func.isRequired,
+    addPlayer: PropTypes.func.isRequired,
   };
 
   state={
@@ -14,7 +14,7 @@ export default class extends Component{
     this.setState({ name: name });
   };
 
-  onSubmit = (e) => {
+  addPlayer = (e) => {
     if (e) e.preventDefault();
     this.props.onAdd(this.state.name);
     this.setState({ name: '' });
@@ -23,7 +23,7 @@ export default class extends Component{
   render() {
     return (
       <div className="add-player-form">
-        <form onSubmit={this.onSubmit}>
+        <form onSubmit={this.addPlayer}>
           <input
             type="text"
             value={this.state.name}
